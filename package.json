@@ -1,0 +1,23 @@
+{
+  "name": "alexa-meets-mercedes",
+  "version": "1.0.0",
+  "description": "Dev Environment",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bespoken-tools": "^2.1.9"
+  },
+  "scripts": {
+    "test": "bst test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrelandgraf/alexa-meets-mercedes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrelandgraf/alexa-meets-mercedes/issues"
+  },
+  "homepage": "https://github.com/andrelandgraf/alexa-meets-mercedes#readme"
+}

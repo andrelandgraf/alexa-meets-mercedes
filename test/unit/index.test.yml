@@ -1,0 +1,41 @@
+---
+configuration:
+  locale: en-US
+
+---
+- test: Launch request, no further interaction.
+- LaunchRequest: # LaunchRequest is not an utterance but a request type and reserved word
+  - response.outputSpeech.ssml: Mercedes Connected Vehicle is ready
+  - response.card.type: Simple
+  - response.card.title: Mercedes Connected Vehicle
+
+---
+- test: AMAZON.HelpIntent. Ask for help and exit.
+- LaunchRequest # Empty expected part means we are not testing the response
+- AMAZON.HelpIntent:
+  - response.outputSpeech.ssml: I am your virtual Mercedes Assistant. I can lock your car and more!
+  - response.reprompt.outputSpeech.ssml: I am your virtual Mercedes Assistant. I can lock your car and more!
+- SessionEndedRequest: # This is equivalent to say 'exit'
+  - response.outputSpeech: undefined
+
+---
+- test: AMAZON.HelpIntent. Ask for help and stop.
+- LaunchRequest
+- AMAZON.HelpIntent # We have already tested this in previous sequence, no need to repeat it
+- AMAZON.StopIntent: Goodbye! # We can test only the expected outputSpeech like this
+
+---
+- test: AMAZON.HelpIntent. Ask for help and lock the car!
+- LaunchRequest
+- AMAZON.HelpIntent
+- LockVehicleIntent: Your Mercedes is now locked.
+
+---
+- test: AMAZON.StopIntent
+- LaunchRequest
+- AMAZON.StopIntent: Goodbye!
+
+---
+- test: AMAZON.CancelIntent
+- LaunchRequest
+- AMAZON.CancelIntent: Goodbye!

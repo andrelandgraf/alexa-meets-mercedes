@@ -1,0 +1,43 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "mercedes",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "LockVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "Lock my mercedes",
+                        "Lock mercedes",
+                        "Lock my vehicle",
+                        "Lock vehicle",
+                        "Lock my car",
+                        "Lock car",
+                        "Lock"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
