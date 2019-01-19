@@ -1,19 +1,19 @@
+const constants = require('../constants');
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-            handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+        return handlerInput.requestEnvelope.request.type === constants.INTENT_REQUEST &&
+            handlerInput.requestEnvelope.request.intent.name === constants.HELP_INTENT;
     },
     handle(handlerInput) {
-        const speechText = 'You can say hello to me!';
-
         return handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt(speechText)
-            .withSimpleCard('Hello World', speechText)
+            .speak(constants.outputSpeech.help)
+            .reprompt(constants.outputSpeech.help)
+            .withSimpleCard(constants.card.title, constants.outputSpeech.help)
             .getResponse();
     }
 };
 
 module.exports = {
     HelpIntentHandler,
-}
+};

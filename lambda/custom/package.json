@@ -4,7 +4,8 @@
   "description": "A AWS lambda function for Amazon Alexa to trigger the Mercedes connected vehicle API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "zip -r code.zip ./"
   },
   "repository": {
     "type": "git",

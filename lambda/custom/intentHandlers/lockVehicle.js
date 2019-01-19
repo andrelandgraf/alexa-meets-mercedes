@@ -1,18 +1,18 @@
+const constants = require('../constants');
+
 const LockVehicleIntentHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-            handlerInput.requestEnvelope.request.intent.name === 'LockVehicleIntent';
+        return handlerInput.requestEnvelope.request.type === constants.INTENT_REQUEST &&
+            handlerInput.requestEnvelope.request.intent.name === constants.LOCK_INTENT;
     },
     handle(handlerInput) {
-        const speechText = 'Hello World!';
-
         return handlerInput.responseBuilder
-            .speak(speechText)
-            .withSimpleCard('Hello World', speechText)
+            .speak(constants.outputSpeech.lock)
+            .withSimpleCard(constants.card.title, constants.outputSpeech.lock)
             .getResponse();
     }
 };
 
 module.exports = {
     LockVehicleIntentHandler,
-}
+};

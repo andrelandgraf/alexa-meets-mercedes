@@ -1,21 +1,21 @@
+const constants = require('../constants');
+
 /*
  * the LaunchRequest event occurs when the skill is invoked without a specific intent.
  */
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
+        return handlerInput.requestEnvelope.request.type === constants.LAUNCH_REQUEST;
     },
     handle(handlerInput) {
-        const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
-
         return handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt(speechText)
-            .withSimpleCard('Hello World', speechText)
+            .speak(constants.outputSpeech.ready)
+            .reprompt(constants.outputSpeech.ready)
+            .withSimpleCard(constants.card.title, constants.outputSpeech.ready)
             .getResponse();
     }
 };
 
 module.exports = {
     LaunchRequestHandler,
-}
+};
