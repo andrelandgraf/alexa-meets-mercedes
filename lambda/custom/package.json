@@ -1,0 +1,31 @@
+{
+  "name": "alexa-meets-mercedes",
+  "version": "1.0.0",
+  "description": "A AWS lambda function for Amazon Alexa to trigger the Mercedes connected vehicle API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrelandgraf/alexa-meets-mercedes.git"
+  },
+  "keywords": [
+    "mercedes",
+    "aws-lambda",
+    "api",
+    "mercedes-connected-vehicle",
+    "amazon-alexa",
+    "alexa"
+  ],
+  "author": "Andre Landgraf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrelandgraf/alexa-meets-mercedes/issues"
+  },
+  "homepage": "https://github.com/andrelandgraf/alexa-meets-mercedes#readme",
+  "dependencies": {
+    "ask-sdk-core": "^2.3.0",
+    "ask-sdk-model": "^1.11.2"
+  }
+}
