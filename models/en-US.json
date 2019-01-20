@@ -35,6 +35,58 @@
                         "Lock car",
                         "Lock"
                     ]
+                },
+                {
+                    "name": "IsVehicleLockedIntent",
+                    "slots": [],
+                    "samples": [
+                        "is vehicle locked",
+                        "is car locked",
+                        "is mercedes locked",
+                        "vehicle locked",
+                        "car locked",
+                        "mercedes locked",
+                        "is my mercedes locked",
+                        "is my vehicle locked",
+                        "is my car locked",
+                        "locked",
+                        "is locked"
+                    ]
+                },
+                {
+                    "name": "IsVehicleDoorOpenIntent",
+                    "slots": [],
+                    "samples": [
+                        "has open doors",
+                        "are all doors on vehicle closed",
+                        "are all doors on car closed",
+                        "are all doors on mercedes closed",
+                        "are all doors on my mercedes closed",
+                        "are all doors on my vehicle closed",
+                        "are all doors on my car closed",
+                        "has my vehicle an open door",
+                        "are all doors closed",
+                        "has my car an open door",
+                        "has my mercedes an open door",
+                        "is any door open",
+                        "is door open"
+                    ]
+                },
+                {
+                    "name": "WhichVehicleDoorOpenIntent",
+                    "slots": [],
+                    "samples": [
+                        "Which door on my vehicle is not closed",
+                        "Which door on my car is not closed",
+                        "Which door on mercedes is open",
+                        "Which door on my mercedes is not closed",
+                        "Which door is not closed",
+                        "Which door on car is open",
+                        "Which door on my vehicle is open",
+                        "Which door on my car is open",
+                        "Which door on my mercedes is open",
+                        "Which door is open"
+                    ]
                 }
             ],
             "types": []
