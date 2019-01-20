@@ -19,7 +19,7 @@ let count = 0;
 function getHeader() {
     const clientID = process.env.MERCEDES_CLIENT_ID;
     const clientSecret = process.env.MERCEDES_CLIENT_SECRET;
-    if(!clientID || !clientSecret){
+    if (!clientID || !clientSecret) {
         console.log("Please use .env to store your client credentials");
     }
     const credentials = Buffer.from(clientID + ':' + clientSecret).toString('base64');
@@ -31,7 +31,7 @@ function getHeader() {
 
 function refreshAuthToken() {
     const headers = getHeader();
-    const params = '?grant_type=refresh_token&refresh_token='+refreshToken;
+    const params = '?grant_type=refresh_token&refresh_token=' + refreshToken;
     const data = {
         'grant_type': 'refresh_token',
         'refresh_token': refreshToken
@@ -39,14 +39,14 @@ function refreshAuthToken() {
     postAuth(params, data, headers);
 }
 
-function getAuthToken(authCode) {
+async function getAuthToken(authCode) {
     count = count + 1;
-    if(count > 1){
+    if (count > 1) {
         console.log('already received one response');
         return;
     }
     const headers = getHeader();
-    const params = '?grant_type=authorization_code&code='+authCode+'&redirect_uri=http://localhost:3000/';
+    const params = '?grant_type=authorization_code&code=' + authCode + '&redirect_uri=http://localhost:3000/';
     const data = {
         'grant_type': 'authorization_code',
         'code': authCode,
@@ -56,25 +56,46 @@ function getAuthToken(authCode) {
 }
 
 function postAuth(params, data, headers) {
-    axios.post('https://api.secure.mercedes-benz.com/oidc10/auth/oauth/v2/token'+params, data, {
-        'headers': headers
-    }).then(function (res) {
-        console.log(res.data);
-        authToken = res.data.access_token;
-        refreshToken = res.data.refresh_token;
-        setTimeout(refreshAuthToken, 3600);
-    }).catch(function (err) {
-        console.log(err);
-    });
+    axios.post('https://api.secure.mercedes-benz.com/oidc10/auth/oauth/v2/token' + params, data, {
+            'headers': headers
+        }).then(function (res) {
+            //console.log(res.data);
+            authToken = res.data.access_token;
+            refreshToken = res.data.refresh_token;
+            return authToken;
+        })
+        .then(function() {
+            //return service.isLocked(authToken);
+            return service.isDoorOpen(authToken);
+        })
+        .then(function (res) {
+            if (res === 401) {
+                refreshAuthToken();
+            }
+            console.log('Test results...');
+            console.log(res);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
+
+async function startTests() {
+    return await service.isLocked(authToken);
 }
 
 app.get('/', function (req, res) {
     if (req.query.code) {
         const authCode = req.query.code;
-        //console.log(authCode);
         getAuthToken(authCode);
     }
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/tests', function (req, res) {
+    json = startTests();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(json));
 });
 
 app.listen(3000, function () {

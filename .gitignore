@@ -1,3 +1,5 @@
+.env
+.hidden
 .DS_Store
 /node_modules
 /lambda/custom/node_modules

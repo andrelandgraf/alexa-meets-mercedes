@@ -17,6 +17,7 @@ const outputSpeech = {
     'error': 'Sorry, I can\'t understand the command. Please say again.',
     'help': 'I am your virtual Mercedes Assistant. I can lock your car and more!',
     'lock': 'Your Mercedes is now locked.',
+    'authRequired': 'You must authenticate with your Mercedes Account to use this skill.',
 }
 
 module.exports = {

@@ -8,6 +8,12 @@ const LaunchRequestHandler = {
         return handlerInput.requestEnvelope.request.type === constants.LAUNCH_REQUEST;
     },
     handle(handlerInput) {
+        if(! handlerInput.requestEnvelope.context.System.user.accessToken ){
+            return handlerInput.responseBuilder
+                .speak(constants.outputSpeech.authRequired)
+                .withLinkAccountCard()
+                .getResponse();
+        }
         return handlerInput.responseBuilder
             .speak(constants.outputSpeech.ready)
             .reprompt(constants.outputSpeech.ready)
