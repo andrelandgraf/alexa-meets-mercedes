@@ -31,7 +31,7 @@ const LockVehicleIntentHandler = {
 const IsVehicleLockedIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === constants.INTENT_REQUEST &&
-            handlerInput.requestEnvelope.request.intent.name === constants.LOCK_INTENT;
+            handlerInput.requestEnvelope.request.intent.name === constants.IS_LOCKED_INTENT;
     },
     async handle(handlerInput) {
         if (!auth.isAuthenticated(handlerInput)) {
@@ -40,20 +40,21 @@ const IsVehicleLockedIntentHandler = {
                 .withLinkAccountCard()
                 .getResponse();
         }
-        const locked = await mercedesAPI.lockVehicle(auth.getToken(handlerInput));
+        const locked = await mercedesAPI.isVehicleLocked(auth.getToken(handlerInput));
         if (locked) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.lock)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.lock)
+                .speak(constants.outputSpeech.locked)
+                .withSimpleCard(constants.card.title, constants.outputSpeech.locked)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.couldnotLock)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.couldnotLock)
+            .speak(constants.outputSpeech.notlocked)
+            .withSimpleCard(constants.card.title, constants.outputSpeech.notlocked)
             .getResponse();
     }
 };
 
 module.exports = {
     LockVehicleIntentHandler,
+    IsVehicleLockedIntentHandler
 };
