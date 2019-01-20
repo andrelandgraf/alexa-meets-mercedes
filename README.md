@@ -10,6 +10,16 @@ Because of [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issu
 
 This skill currently supports US-English and German. All currently implemented intents work for both languages. Enjoy the language of your choice!
 
+### What can I say?
+
+Currently, this skill support four custom Intents and five Built-In Intents. 
+
+Intents:
+* LockVehicle - try: "Alexa, ask Mercedes to lock my car!" or "Alexa, sag Mercedes schließ meinen Mercedes ab."
+* IsVehicleLocked - try: "Alexa, ask Mercedes is my vehicle locked?" or "Alexa, frag Mercedes ob mein Auto absperrt ist."
+* IsVehicleDoorOpen - try: "Alexa, ask Mercedes if a door is open?" or "Alexa, frag Mercedes ob Türen offen sind".
+* WhichDoorOpen - try: "Alexa, ask Mercedes which door is open?" or "Alexa, frage Mercedes welche Tür offen ist".
+
 # Set up your own environment
 
 Use this repository as a starting point to build your own Alexa Skill!
