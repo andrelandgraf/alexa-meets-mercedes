@@ -1,4 +1,5 @@
 const constants = require('../constants');
+const auth = require('../services/auth');
 
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
@@ -7,9 +8,10 @@ const CancelAndStopIntentHandler = {
                 handlerInput.requestEnvelope.request.intent.name === constants.STOP_INTENT);
     },
     handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.goodbye)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.goodbye)
+            .speak(language.outputSpeech.goodbye)
+            .withSimpleCard(language.card.title, language.outputSpeech.goodbye)
             .getResponse();
     }
 };

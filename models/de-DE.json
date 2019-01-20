@@ -1,0 +1,118 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "mercedes",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "LockVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "Bitte schließe mein Auto ab",
+                        "Bitte schließe mein Mercedes ab",
+                        "Bitte schließ mein Mercedes zu",
+                        "Bitte schließ mein Auto zu",
+                        "Schließe Auto zu",
+                        "Schließe Mercedes zu",
+                        "Schließ Mercedes zu",
+                        "Schließ Auto zu",
+                        "Schließ meinen Mercedes zu",
+                        "Schließ mein Auto zu"
+                    ]
+                },
+                {
+                    "name": "IsVehicleLockedIntent",
+                    "slots": [],
+                    "samples": [
+                        "Wagen abgeschlossen",
+                        "Wagen zugesperrt",
+                        "Ist mein Wagen zugesperrt",
+                        "Ist mein Auto zugesperrt",
+                        "Ist mein Mercedes zugesperrt",
+                        "Ist Mercedes zugesperrt",
+                        "Ist zugesperrt",
+                        "Ist Auto zugesperrt",
+                        "Auto abgeschlossen",
+                        "Mercedes abgeschlossen",
+                        "Mercedes zugeschlossen",
+                        "Auto zugeschlossen",
+                        "Abgeschlossen",
+                        "Zugeschlossen",
+                        "Habe ich Mercedes abgeschlossen",
+                        "Habe ich Mercedes zugeschlossen",
+                        "Habe ich mein Auto zugeschlossen",
+                        "Habe ich mein Auto abgeschlossen",
+                        "Habe ich meinen Mercedes abgeschlossen",
+                        "Habe ich zugeschlossen",
+                        "Ist mein Mercedes abgeschlossen",
+                        "Ist mein Auto abgeschlossen"
+                    ]
+                },
+                {
+                    "name": "IsVehicleDoorOpenIntent",
+                    "slots": [],
+                    "samples": [
+                        "Türen nicht zu",
+                        "Türen offen",
+                        "Türen am Auto vergessen",
+                        "Türen vergessen",
+                        "Habe ich vergessen die Türen zuzumachen",
+                        "Türen an  meinem Mercedes noch offen",
+                        "Türen an meinem Auto noch offen",
+                        "Türen an meinem Auto nicht zu",
+                        "Türen an meinem Auto offen",
+                        "Türen am Auto offen",
+                        "Türen am Mercedes offen",
+                        "Ist eine Tür nicht zu",
+                        "Sind alle Türen zu",
+                        "Sind alle Türen geschlossen",
+                        "Tür offen",
+                        "Ist eine Tür offen"
+                    ]
+                },
+                {
+                    "name": "WhichVehicleDoorOpenIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Autotür offen",
+                        "Welche Autotür nicht geschlossen",
+                        "Welche Autotür nicht zu",
+                        "Autotür nicht zu",
+                        "Wagentür nicht geschlossen",
+                        "Wagentür nicht zu",
+                        "Autotür offen",
+                        "Wagentür offen",
+                        "Was ist offen",
+                        "Welche Tür an meinem Mercedes ist offen",
+                        "Welche Tür am Wagen ist offen",
+                        "Welche Tür ist nicht geschlossen",
+                        "Welche Tür ist nicht  zu",
+                        "Welche Tür habe ich vergessen",
+                        "Welche Tür ist noch offen",
+                        "Welche Tür ist offen"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}

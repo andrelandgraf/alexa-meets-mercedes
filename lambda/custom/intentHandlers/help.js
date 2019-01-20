@@ -1,4 +1,5 @@
 const constants = require('../constants');
+const auth = require('../services/auth');
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -6,10 +7,11 @@ const HelpIntentHandler = {
             handlerInput.requestEnvelope.request.intent.name === constants.HELP_INTENT;
     },
     handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.help)
-            .reprompt(constants.outputSpeech.help)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.help)
+            .speak(language.outputSpeech.help)
+            .reprompt(language.outputSpeech.help)
+            .withSimpleCard(language.card.title, language.outputSpeech.help)
             .getResponse();
     }
 };

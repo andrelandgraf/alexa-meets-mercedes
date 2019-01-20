@@ -8,22 +8,23 @@ const LockVehicleIntentHandler = {
             handlerInput.requestEnvelope.request.intent.name === constants.LOCK_INTENT;
     },
     async handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         if (!auth.isAuthenticated(handlerInput)) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.authRequired)
+                .speak(language.outputSpeech.authRequired)
                 .withLinkAccountCard()
                 .getResponse();
         }
         const locked = await mercedesAPI.lockVehicle(auth.getToken(handlerInput));
         if (locked) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.lock)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.lock)
+                .speak(language.outputSpeech.lock)
+                .withSimpleCard(language.card.title, language.outputSpeech.lock)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.couldnotLock)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.couldnotLock)
+            .speak(language.outputSpeech.couldnotLock)
+            .withSimpleCard(language.card.title, language.outputSpeech.couldnotLock)
             .getResponse();
     }
 };
@@ -34,22 +35,23 @@ const IsVehicleLockedIntentHandler = {
             handlerInput.requestEnvelope.request.intent.name === constants.IS_LOCKED_INTENT;
     },
     async handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         if (!auth.isAuthenticated(handlerInput)) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.authRequired)
+                .speak(language.outputSpeech.authRequired)
                 .withLinkAccountCard()
                 .getResponse();
         }
         const locked = await mercedesAPI.isVehicleLocked(auth.getToken(handlerInput));
         if (locked) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.locked)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.locked)
+                .speak(language.outputSpeech.locked)
+                .withSimpleCard(language.card.title, language.outputSpeech.locked)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.notlocked)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.notlocked)
+            .speak(language.outputSpeech.notlocked)
+            .withSimpleCard(language.card.title, language.outputSpeech.notlocked)
             .getResponse();
     }
 };

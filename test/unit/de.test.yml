@@ -1,0 +1,57 @@
+---
+configuration:
+  locale: de-DE
+
+---
+- test: Launch request, no further interaction.
+- LaunchRequest: # LaunchRequest is not an utterance but a request type and reserved word
+  - response.outputSpeech.ssml: Dein Mercedes Virtuelles Fahrzeug ist bereit!
+  - response.card.type: Simple
+  - response.card.title: Mercedes Virtuelles Fahrzeug
+
+---
+- test: AMAZON.HelpIntent. Ask for help and exit.
+- LaunchRequest # Empty expected part means we are not testing the response
+- AMAZON.HelpIntent:
+  - response.outputSpeech.ssml: Ich bin dein virtueller Fahrzeug Assistent, frag mich, ob das Auto zugesperrt ist!
+  - response.reprompt.outputSpeech.ssml: Ich bin dein virtueller Fahrzeug Assistent, frag mich, ob das Auto zugesperrt ist!
+- SessionEndedRequest: # This is equivalent to say 'exit'
+  - response.outputSpeech: undefined
+
+---
+- test: AMAZON.HelpIntent. Ask for help and stop.
+- LaunchRequest
+- AMAZON.HelpIntent # We have already tested this in previous sequence, no need to repeat it
+- AMAZON.StopIntent: Auf Wiedersehen! # We can test only the expected outputSpeech like this
+
+---
+- test: IsVehicleLockedIntent. Ask if unlocked car is locked.
+- IsVehicleLockedIntent: Dein Mercedes ist nicht abgesperrt.
+
+---
+- test: AMAZON.HelpIntent. Ask for help and lock the car!
+- LaunchRequest
+- AMAZON.HelpIntent
+- LockVehicleIntent: Dein Mercedes ist jetzt abgesperrt.
+
+---
+- test: IsVehicleLockedIntent. Ask if locked car is locked.
+- IsVehicleLockedIntent: Dein Mercedes ist abgesperrt.
+
+---
+- test: IsVehicleDoorOpenIntent. Ask if doors are closed.
+- IsVehicleDoorOpenIntent: Alle Türen sind geschlossen.
+
+---
+- test: WhichVehicleDoorOpenIntent. Ask which door is open.
+- WhichVehicleDoorOpenIntent: Alle Türen sind geschlossen.
+
+---
+- test: AMAZON.StopIntent
+- LaunchRequest
+- AMAZON.StopIntent: Auf Wiedersehen!
+
+---
+- test: AMAZON.CancelIntent
+- LaunchRequest
+- AMAZON.CancelIntent: Auf Wiedersehen!

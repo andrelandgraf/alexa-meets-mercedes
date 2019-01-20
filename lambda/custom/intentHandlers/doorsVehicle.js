@@ -8,22 +8,23 @@ const IsVehicleDoorOpenIntentHandler = {
             handlerInput.requestEnvelope.request.intent.name === constants.IS_DOOR_OPEN_INTENT;
     },
     async handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         if (!auth.isAuthenticated(handlerInput)) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.authRequired)
+                .speak(language.outputSpeech.authRequired)
                 .withLinkAccountCard()
                 .getResponse();
         }
         const open = await mercedesAPI.isDoorOpen(auth.getToken(handlerInput));
         if (open) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.open)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.open)
+                .speak(language.outputSpeech.open)
+                .withSimpleCard(language.card.title, language.outputSpeech.open)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.closed)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.closed)
+            .speak(language.outputSpeech.closed)
+            .withSimpleCard(language.card.title, language.outputSpeech.closed)
             .getResponse();
     }
 };
@@ -34,22 +35,23 @@ const WhichVehicleDoorOpenIntentHandler = {
             handlerInput.requestEnvelope.request.intent.name === constants.WHICH_DOOR_OPEN_INTENT;
     },
     async handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         if (!auth.isAuthenticated(handlerInput)) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.authRequired)
+                .speak(language.outputSpeech.authRequired)
                 .withLinkAccountCard()
                 .getResponse();
         }
         const which = await mercedesAPI.whichDoorIsOpen(auth.getToken(handlerInput));
         if (which == 'none') {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.closed)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.closed)
+                .speak(language.outputSpeech.closed)
+                .withSimpleCard(language.card.title, language.outputSpeech.closed)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(which + ' ' + constants.outputSpeech.whichDoor)
-            .withSimpleCard(constants.card.title, which +  ' ' + constants.outputSpeech.whichDoor)
+            .speak(which + ' ' + language.outputSpeech.whichDoor)
+            .withSimpleCard(language.card.title, which +  ' ' + language.outputSpeech.whichDoor)
             .getResponse();
     }
 };

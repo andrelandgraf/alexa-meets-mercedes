@@ -9,16 +9,17 @@ const LaunchRequestHandler = {
         return handlerInput.requestEnvelope.request.type === constants.LAUNCH_REQUEST;
     },
     handle(handlerInput) {
+        const language = auth.getLanguageStrings(handlerInput);
         if(! auth.isAuthenticated(handlerInput)){
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.authRequired)
+                .speak(language.outputSpeech.authRequired)
                 .withLinkAccountCard()
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.ready)
-            .reprompt(constants.outputSpeech.ready)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.ready)
+            .speak(language.outputSpeech.ready)
+            .reprompt(language.outputSpeech.ready)
+            .withSimpleCard(language.card.title, language.outputSpeech.ready)
             .getResponse();
     }
 };

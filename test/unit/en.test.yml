@@ -25,6 +25,7 @@ configuration:
 - AMAZON.StopIntent: Goodbye! # We can test only the expected outputSpeech like this
 
 ---
+- test: IsVehicleLockedIntent. Ask if unlocked car is locked.
 - IsVehicleLockedIntent: Your Mercedes is not locked.
 
 ---
@@ -34,12 +35,15 @@ configuration:
 - LockVehicleIntent: Your Mercedes is now locked.
 
 ---
+- test: IsVehicleLockedIntent. Ask if locked car is locked.
 - IsVehicleLockedIntent: Your Mercedes is locked.
 
 ---
+- test: IsVehicleDoorOpenIntent. Ask if doors are closed.
 - IsVehicleDoorOpenIntent: All doors are closed.
 
 ---
+- test: WhichVehicleDoorOpenIntent. Ask which door is open.
 - WhichVehicleDoorOpenIntent: All doors are closed.
 
 ---

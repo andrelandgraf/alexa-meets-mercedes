@@ -1,4 +1,5 @@
 const constants = require('../constants');
+const auth = require('../services/auth');
 
 const ErrorHandler = {
     canHandle() {
@@ -6,10 +7,10 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log(`Error handled: ${error.message}`);
-
+        const language = auth.getLanguageStrings(handlerInput);
         return handlerInput.responseBuilder
             .speak()
-            .reprompt(constants.outputSpeech.error)
+            .reprompt(language.outputSpeech.error)
             .getResponse();
     },
 };
