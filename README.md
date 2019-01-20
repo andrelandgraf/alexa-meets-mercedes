@@ -56,7 +56,13 @@ Add http://localhost:3000/ as the redirect url within your Mercedes App in the M
 
 Run `node index.js` in the root folder to start a express.js server for manually testing the Mercedes API Authentification and selected features of the API. 
 
-Open http://localhost:3000/ and click on "Auth" to go through the authentification process. 
+Go to your [sandbox car](https://car-simulator.developer.mercedes-benz.com) and unlock any doors. 
+
+Open http://localhost:3000/ and click on "Auth" to go through the authentification process.
+
+Check your simulator car again, the doors should now be locked again. 
+
+
 
 ### Alexa Developer Console
 
