@@ -1,4 +1,5 @@
 const constants = require('../constants');
+const auth = require('../services/auth');
 
 const LockVehicleIntentHandler = {
     canHandle(handlerInput) {
@@ -6,7 +7,7 @@ const LockVehicleIntentHandler = {
             handlerInput.requestEnvelope.request.intent.name === constants.LOCK_INTENT;
     },
     handle(handlerInput) {
-        if(! handlerInput.requestEnvelope.context.System.user.accessToken ){
+        if(! auth.isAuthenticated(handlerInput)){
             return handlerInput.responseBuilder
                 .speak(constants.outputSpeech.authRequired)
                 .withLinkAccountCard()

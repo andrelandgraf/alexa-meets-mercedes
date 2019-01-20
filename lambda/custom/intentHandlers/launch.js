@@ -1,4 +1,5 @@
 const constants = require('../constants');
+const auth = require('../services/auth');
 
 /*
  * the LaunchRequest event occurs when the skill is invoked without a specific intent.
@@ -8,7 +9,7 @@ const LaunchRequestHandler = {
         return handlerInput.requestEnvelope.request.type === constants.LAUNCH_REQUEST;
     },
     handle(handlerInput) {
-        if(! handlerInput.requestEnvelope.context.System.user.accessToken ){
+        if(! auth.isAuthenticated(handlerInput)){
             return handlerInput.responseBuilder
                 .speak(constants.outputSpeech.authRequired)
                 .withLinkAccountCard()

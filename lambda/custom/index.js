@@ -7,6 +7,9 @@ const lockVehicle = require('./intentHandlers/lockVehicle');
 const sessionEnded = require('./intentHandlers/sessionEnded');
 const help = require('./intentHandlers/help');
 
+// load .env variables into the environment
+require('dotenv').config();
+
 
 // https://ask-sdk-for-nodejs.readthedocs.io/en/latest/Developing-Your-First-Skill.html
 exports.handler = Alexa.SkillBuilders.custom()
