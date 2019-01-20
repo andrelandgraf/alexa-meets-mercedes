@@ -66,7 +66,7 @@ function postAuth(params, data, headers) {
         })
         .then(function() {
             //return service.isLocked(authToken);
-            return service.isDoorOpen(authToken);
+            return service.lockVehicle(authToken);
         })
         .then(function (res) {
             if (res === 401) {
@@ -80,22 +80,12 @@ function postAuth(params, data, headers) {
         });
 }
 
-async function startTests() {
-    return await service.isLocked(authToken);
-}
-
 app.get('/', function (req, res) {
     if (req.query.code) {
         const authCode = req.query.code;
         getAuthToken(authCode);
     }
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/tests', function (req, res) {
-    json = startTests();
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(json));
 });
 
 app.listen(3000, function () {

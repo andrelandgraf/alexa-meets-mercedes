@@ -2,6 +2,7 @@ const axios = require('axios');
 
 const api = 'https://api.mercedes-benz.com/experimental/connectedvehicle/v1/';
 let vehicleID = undefined;
+let vehicle = undefined;
 
 function getHeader(authToken) {
     return {
@@ -17,8 +18,8 @@ function postHeader(authToken) {
     };
 }
 
-const postRequest = function (endpoint, params, data, authToken) {
-    axios.post(api + endpoint + params, data, {
+const postRequest = function (endpoint, data, authToken) {
+    axios.post(api + endpoint, data, {
         'headers': postHeader(authToken)
     }).then(function (res) {
         console.log(res.data);
@@ -44,7 +45,12 @@ const getCar = function(authToken) {
     const endpoint = 'vehicles/';
     return getRequest(endpoint, authToken).then(function(carList) {
         vehicleID = carList[0].id;
-    });
+    }).then(function(){
+        const endpoint = 'vehicles/' + vehicleID;
+        return getRequest(endpoint, authToken).then(function(car) {
+            vehicle = car;
+        })
+    })
 }
 
 const getDoors = async function(authToken) {
@@ -60,6 +66,18 @@ const isVehicleLocked = async function(authToken) {
     const LOCKED = 'LOCKED';
     const doors = await getDoors(authToken);
     return (doors.doorlockstatusvehicle.value === LOCKED)
+}
+
+const lockVehicle = async function(authToken) {
+    if(vehicleID === undefined){
+        await getCar(authToken);
+    }
+    const endpoint = 'vehicles/' + vehicleID + '/doors';
+    const data = {
+        command: "LOCK"
+    }
+    await postRequest(endpoint, data, authToken);
+    return await isVehicleLocked(authToken);
 }
 
 const isDoorOpen = async function(authToken) {
@@ -89,8 +107,29 @@ const whichDoorIsOpen = async function(authToken) {
     return 'none';
 }
 
+const getFuelLevel = async function(authToken) {
+    if(vehicleID === undefined){
+        await getCar(authToken);
+    }
+    const endpoint = 'vehicles/' + vehicleID + '/fuel';
+    const fuel = await getRequest(endpoint, authToken);
+    return fuel.value + ' ' + fuel.unit;
+}
+
+const getChargeState = async function(authToken) {
+    if(vehicleID === undefined){
+        await getCar(authToken);
+    }
+    const endpoint = 'vehicles/' + vehicleID + '/stateofcharge';
+    const charge = await getRequest(endpoint, authToken);
+    return charge.value + ' ' + charge.unit;
+}
+
 module.exports = {
     isVehicleLocked,
+    lockVehicle,
     isDoorOpen,
     whichDoorIsOpen,
+    getFuelLevel,
+    getChargeState,
 }
