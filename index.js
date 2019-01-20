@@ -1,3 +1,5 @@
+// TODO set this as the redirect url on your mercedes developer app: http://localhost:3000/
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -16,6 +18,7 @@ app.use(bodyParser.urlencoded({
 
 let count = 0;
 
+// create authentifcation headers
 function getHeader() {
     const clientID = process.env.MERCEDES_CLIENT_ID;
     const clientSecret = process.env.MERCEDES_CLIENT_SECRET;
@@ -29,6 +32,7 @@ function getHeader() {
     };
 }
 
+// refresh authToken
 function refreshAuthToken() {
     const headers = getHeader();
     const params = '?grant_type=refresh_token&refresh_token=' + refreshToken;
@@ -42,6 +46,7 @@ function refreshAuthToken() {
 async function getAuthToken(authCode) {
     count = count + 1;
     if (count > 1) {
+        // make sure to remove the code parameter from the browser url and rerun the server in order to go through authentification again
         console.log('already received one response');
         return;
     }
@@ -55,6 +60,7 @@ async function getAuthToken(authCode) {
     postAuth(params, data, headers);
 }
 
+// the actual post request to the oauth url
 function postAuth(params, data, headers) {
     axios.post('https://api.secure.mercedes-benz.com/oidc10/auth/oauth/v2/token' + params, data, {
             'headers': headers
@@ -65,6 +71,7 @@ function postAuth(params, data, headers) {
             return authToken;
         })
         .then(function() {
+            // test selected api calls here
             //return service.isLocked(authToken);
             return service.lockVehicle(authToken);
         })
@@ -82,6 +89,7 @@ function postAuth(params, data, headers) {
 
 app.get('/', function (req, res) {
     if (req.query.code) {
+        // afer getting redirected back to our page, we can access the authCode get-parameter and call the authentification
         const authCode = req.query.code;
         getAuthToken(authCode);
     }
