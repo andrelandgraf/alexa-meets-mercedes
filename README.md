@@ -109,7 +109,7 @@ Therefore, make sure to set `USE_MOCKUP`to `1` for the AWS lambda env.
 USE_MOCKUP=1
 ```
 
-## Enable the dev Skill within your Alexa (Web-)App to test on your own device
+## Enable the dev Skill within your Alexa (Web-)App to test on your own device (Alexa Build + AWS lambda function)
 
 Goto the https://alexa.amazon.com/spa/index.html#skills/your-skills/ and select your skill, enable it and go through the Account Linking process.  
 
