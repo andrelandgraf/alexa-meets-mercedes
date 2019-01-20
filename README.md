@@ -4,7 +4,7 @@ A AWS lambda function for Amazon Alexa to trigger the Mercedes connected vehicle
 
 ## For Beta Testers
 
-Because of [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issues/1), it is not yet possible to link your Mercedes Account to this skill. Nevertheless, the AWS Lambda function that processes all requests is currently working in MOCKUP Mode. Also, it is currently possible to enable this skill without account linking. Therefore, you can activate the skill in your Alexa (Web-)App without linking. This will allow you to test out all the intents and receive Mockup responses.
+Because of [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issues/1), it is not yet possible to link your Mercedes Account to this skill. Nevertheless, the AWS Lambda function that processes all requests is currently working in MOCKUP Mode. Also, it is currently possible to enable this skill without account linking. Therefore, you can activate the skill in your Alexa (Web-)App without linking. This will allow you to test out all the intents and receive mockup responses.
 
 ## Language Support
 
