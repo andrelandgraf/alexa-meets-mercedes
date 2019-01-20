@@ -125,6 +125,11 @@ const getChargeState = async function(authToken) {
     return charge.value + ' ' + charge.unit;
 }
 
+const endSession = function() {
+    vehicle = undefined;
+    vehicleID = undefined;
+}
+
 module.exports = {
     isVehicleLocked,
     lockVehicle,
@@ -132,4 +137,5 @@ module.exports = {
     whichDoorIsOpen,
     getFuelLevel,
     getChargeState,
+    endSession,
 }

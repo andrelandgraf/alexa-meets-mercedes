@@ -2,10 +2,10 @@ const constants = require('../constants');
 const auth = require('../services/auth');
 const mercedesAPI = auth.getMercedesAPI();
 
-const LockVehicleIntentHandler = {
+const IsVehicleDoorOpenIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === constants.INTENT_REQUEST &&
-            handlerInput.requestEnvelope.request.intent.name === constants.LOCK_INTENT;
+            handlerInput.requestEnvelope.request.intent.name === constants.IS_DOOR_OPEN_INTENT;
     },
     async handle(handlerInput) {
         if (!auth.isAuthenticated(handlerInput)) {
@@ -14,24 +14,24 @@ const LockVehicleIntentHandler = {
                 .withLinkAccountCard()
                 .getResponse();
         }
-        const locked = await mercedesAPI.lockVehicle(auth.getToken(handlerInput));
-        if (locked) {
+        const open = await mercedesAPI.isDoorOpen(auth.getToken(handlerInput));
+        if (open) {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.lock)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.lock)
+                .speak(constants.outputSpeech.open)
+                .withSimpleCard(constants.card.title, constants.outputSpeech.open)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.couldnotLock)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.couldnotLock)
+            .speak(constants.outputSpeech.closed)
+            .withSimpleCard(constants.card.title, constants.outputSpeech.closed)
             .getResponse();
     }
 };
 
-const IsVehicleLockedIntentHandler = {
+const WhichVehicleDoorOpenIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === constants.INTENT_REQUEST &&
-            handlerInput.requestEnvelope.request.intent.name === constants.LOCK_INTENT;
+            handlerInput.requestEnvelope.request.intent.name === constants.WHICH_DOOR_OPEN_INTENT;
     },
     async handle(handlerInput) {
         if (!auth.isAuthenticated(handlerInput)) {
@@ -40,20 +40,21 @@ const IsVehicleLockedIntentHandler = {
                 .withLinkAccountCard()
                 .getResponse();
         }
-        const locked = await mercedesAPI.lockVehicle(auth.getToken(handlerInput));
-        if (locked) {
+        const which = await mercedesAPI.whichDoorIsOpen(auth.getToken(handlerInput));
+        if (which == 'none') {
             return handlerInput.responseBuilder
-                .speak(constants.outputSpeech.lock)
-                .withSimpleCard(constants.card.title, constants.outputSpeech.lock)
+                .speak(constants.outputSpeech.closed)
+                .withSimpleCard(constants.card.title, constants.outputSpeech.closed)
                 .getResponse();
         }
         return handlerInput.responseBuilder
-            .speak(constants.outputSpeech.couldnotLock)
-            .withSimpleCard(constants.card.title, constants.outputSpeech.couldnotLock)
+            .speak(which + ' ' + constants.outputSpeech.whichDoor)
+            .withSimpleCard(constants.card.title, which +  ' ' + constants.outputSpeech.whichDoor)
             .getResponse();
     }
 };
 
 module.exports = {
-    LockVehicleIntentHandler,
-};
+    IsVehicleDoorOpenIntentHandler,
+    WhichVehicleDoorOpenIntentHandler,
+}

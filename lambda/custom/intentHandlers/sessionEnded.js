@@ -1,11 +1,14 @@
 const constants = require('../constants');
+const auth = require('../services/auth');
+const mercedesAPI = auth.getMercedesAPI();
 
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === constants.SESSION_ENDED_REQUEST;
     },
     handle(handlerInput) {
-        // TODO any cleanup logic goes here
+        //  any cleanup logic goes here
+        mercedesAPI.endSession();
         return handlerInput.responseBuilder.getResponse();
     }
 };
