@@ -1,3 +1,5 @@
+const constants = require('../constants');
+
 const card = {
     'title': 'Mercedes Virtuelles Fahrzeug',
 }
@@ -17,7 +19,24 @@ const outputSpeech = {
     'whichDoor': 'Tür ist offen.',
 }
 
+// use constants to retrieve right German word
+const whichDoor = function(which){
+    switch(which) {
+        case constants.DOORS.FRONT_LEFT:
+            return 'Vorne Links';
+        case constants.DOORS.FRONT_RIGHT:
+            return 'Vorne Rechts';
+        case constants.DOORS.REAR_LEFT:
+            return 'Hinten Links';
+        case constants.DOORS.REAR_RIGHT:
+            return 'Hinten Rechts';
+        default:
+            return 'Keine'
+    }
+}
+
 module.exports = {
     card,
     outputSpeech,
+    whichDoor,
 }

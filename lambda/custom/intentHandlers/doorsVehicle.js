@@ -44,14 +44,16 @@ const WhichVehicleDoorOpenIntentHandler = {
         }
         const which = await mercedesAPI.whichDoorIsOpen(auth.getToken(handlerInput));
         if (which == 'none') {
+            // all doors are closed
             return handlerInput.responseBuilder
                 .speak(language.outputSpeech.closed)
                 .withSimpleCard(language.card.title, language.outputSpeech.closed)
                 .getResponse();
         }
+        // at least one door is open
         return handlerInput.responseBuilder
-            .speak(which + ' ' + language.outputSpeech.whichDoor)
-            .withSimpleCard(language.card.title, which +  ' ' + language.outputSpeech.whichDoor)
+            .speak(language.whichDoor(which) + ' ' + language.outputSpeech.whichDoor)
+            .withSimpleCard(language.card.title, which + ' ' + language.outputSpeech.whichDoor)
             .getResponse();
     }
 };

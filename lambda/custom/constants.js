@@ -10,6 +10,14 @@ const IS_DOOR_OPEN_INTENT = 'IsVehicleDoorOpenIntent';
 const WHICH_DOOR_OPEN_INTENT = 'WhichVehicleDoorOpenIntent';
 const SESSION_ENDED_REQUEST = 'SessionEndedRequest';
 
+const DOORS = {
+    FRONT_LEFT: 'front left',
+    FRONT_RIGHT: 'front right',
+    REAR_LEFT: 'rear left',
+    REAR_RIGHT: 'rear right',
+    NONE: 'none',
+}
+
 module.exports = {
     LAUNCH_REQUEST,
     INTENT_REQUEST,
@@ -21,4 +29,5 @@ module.exports = {
     IS_DOOR_OPEN_INTENT,
     WHICH_DOOR_OPEN_INTENT,
     SESSION_ENDED_REQUEST,
+    DOORS,
 };

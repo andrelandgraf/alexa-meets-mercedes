@@ -10,7 +10,7 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         const language = auth.getLanguageStrings(handlerInput);
-        if(! auth.isAuthenticated(handlerInput)){
+        if (!auth.isAuthenticated(handlerInput)) {
             return handlerInput.responseBuilder
                 .speak(language.outputSpeech.authRequired)
                 .withLinkAccountCard()

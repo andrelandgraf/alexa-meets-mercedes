@@ -17,7 +17,13 @@ const outputSpeech = {
     'whichDoor': 'is open.',
 }
 
+// we can just reuse constant names, see German File for difference
+const whichDoor = function(which){
+    return which;
+}
+
 module.exports = {
     card,
     outputSpeech,
+    whichDoor,
 }
