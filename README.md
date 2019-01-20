@@ -30,6 +30,10 @@ Set up your Alexa skill on the [Amazon Dev Console](https://developer.amazon.com
 
 Go to the [Developer Page](https://developer.mercedes-benz.com/) and create a new account if you have none. Create a new APP and subscribe the app to the [Connected Vehicle Experimental API](https://developer.mercedes-benz.com/apis/connected_vehicle_experimental_api)
 
+### Opt-in for the Car Simulator (Sandbox) to receive a virtual vehicle
+
+See: https://car-simulator.developer.mercedes-benz.com
+
 ### Set up ENV for testing
 
 Use the `EXAMPLE.env` as a template. Save your client credentials as `.env`.
