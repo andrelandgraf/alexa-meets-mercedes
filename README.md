@@ -6,7 +6,7 @@ A AWS lambda function for Amazon Alexa to trigger the Mercedes connected vehicle
 
 Because of [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issues/1), it is not yet possible to link your Mercedes Account to this skill. Nevertheless, the AWS Lambda function that processes all requests is currently working in MOCKUP Mode. Also, it is currently possible to enable this skill without account linking. Therefore, you can activate the skill in your Alexa (Web-)App without linking. This will allow you to test out all the intents and receive mockup responses.
 
-## Language Support
+### Language Support
 
 This skill currently supports US-English and German. All currently implemented intents work for both languages. Enjoy the language of your choice!
 
@@ -14,7 +14,7 @@ This skill currently supports US-English and German. All currently implemented i
 
 Use this repository as a starting point to build your own Alexa Skill!
 
-## Getting Started
+### Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
