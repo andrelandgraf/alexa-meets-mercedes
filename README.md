@@ -4,7 +4,9 @@ A AWS lambda function for Amazon Alexa to trigger the Mercedes connected vehicle
 
 ## For Beta Testers
 
-Because of [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issues/1), it is not yet possible to link your Mercedes Account to this skill. Nevertheless, the AWS Lambda function that processes all requests is currently working in MOCKUP Mode. Also, it is currently possible to enable this skill without account linking. Therefore, you can activate the skill in your Alexa (Web-)App without linking. This will allow you to test out all the intents and receive mockup responses.
+~~Because of [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issues/1), it is not yet possible to link your Mercedes Account to this skill. Nevertheless, the AWS Lambda function that processes all requests is currently working in MOCKUP Mode. Also, it is currently possible to enable this skill without account linking. Therefore, you can activate the skill in your Alexa (Web-)App without linking. This will allow you to test out all the intents and receive mockup responses.~~
+
+The AWS lambda function is now running in "production" mode as Issue #1 is solved. Link your Mercedes Account through the Alexa (Web-)App and get started. Also make sure you have a [virtual car](https://car-simulator.developer.mercedes-benz.com/orgs/lqPw/emulators) to check out the results. 
 
 ### Language Support
 
@@ -19,6 +21,8 @@ Intents:
 * IsVehicleLocked - try: "Alexa, ask Mercedes is my vehicle locked?" or "Alexa, frag Mercedes ob mein Auto absperrt ist."
 * IsVehicleDoorOpen - try: "Alexa, ask Mercedes if a door is open?" or "Alexa, frag Mercedes ob Türen offen sind".
 * WhichDoorOpen - try: "Alexa, ask Mercedes which door is open?" or "Alexa, frage Mercedes welche Tür offen ist".
+
+All possible requests and commands can be found in the `model` subfolder.
 
 # Set up your own environment
 
@@ -122,5 +126,3 @@ USE_MOCKUP=1
 ## Enable the dev Skill within your Alexa (Web-)App to test on your own device (Alexa Build + AWS lambda function)
 
 Goto the https://alexa.amazon.com/spa/index.html#skills/your-skills/ and select your skill, enable it and go through the Account Linking process.  
-
-If [Issue #1](https://github.com/andrelandgraf/alexa-meets-mercedes/issues/1) is not resolved yet, again make sure to set `USE_MOCKUP`to `1` for the AWS lambda env as account linking will most likely fail. 
