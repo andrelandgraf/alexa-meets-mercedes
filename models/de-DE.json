@@ -27,6 +27,13 @@
                     "name": "LockVehicleIntent",
                     "slots": [],
                     "samples": [
+                        "Türen absperren",
+                        "Auto zusperren",
+                        "Mercedes zusperren",
+                        "Mercedes absperrren",
+                        "Mercedes abschließen",
+                        "Auto absperren",
+                        "Auto abschließen",
                         "Bitte schließe mein Auto ab",
                         "Bitte schließe mein Mercedes ab",
                         "Bitte schließ mein Mercedes zu",

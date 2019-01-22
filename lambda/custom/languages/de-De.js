@@ -16,7 +16,7 @@ const outputSpeech = {
     'authRequired': 'Authentifizierung erforderlich, bitte verknüpfe deinen Mercedes Account über die Alexa App.',
     'open': 'Es ist mindestens eine Tür offen.',
     'closed': 'Alle Türen sind geschlossen.',
-    'whichDoor': 'Tür ist offen.',
+    'whichDoor': 'ist offen.',
 }
 
 // use constants to retrieve right German word
